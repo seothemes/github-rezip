@@ -2,7 +2,7 @@
 #
 # Github Rezip
 #
-# Removes '-master' from Github Zip files.
+# Downloads and removes branch name from Github Zip files.
 #
 # Step 1: Save this bash script file to Desktop.
 # Step 2: Open the terminal and navigate to Desktop.
@@ -10,10 +10,16 @@
 # Step 4: Run the following: bash rezip owner/repo.
 # Step 5: The Zip file will be saved to Desktop.
 
-file=master.zip
 repo=$1
+branch=$2
 base=`basename $repo`
-url="https://github.com/${repo}/archive/master.zip"
+url="https://github.com/${repo}/archive/${branch}.zip"
+
+if [[ -n "$branch" ]]; then
+  branch=master
+fi
+
+file="${branch}.zip"
 
 if test -f "$file"; then
   echo "$file already exists. Please delete and try again."
@@ -27,11 +33,11 @@ fi
 
 if [[ -n "$repo" ]]; then
   wget -q $url
-  unzip -qq master.zip
-  mv "${base}-master" $base
+  unzip -qq $file
+  mv "${base}-${branch}" $base
   wait
   zip -qr -r "${base}.zip" $base
-  rm master.zip
+  rm $file
   rm -r "${base}"
   
 else

@@ -27,3 +27,6 @@ Optionally run the following to set correct permissions:
 Run the following bash command, passing in the repository owner and name as arguments, e.g:
 
 `bash rezip rtyley/small-test-repo`
+
+You can also optionally pass in the branch name as a second argument if it is different to master.
+
