@@ -4,7 +4,7 @@ Bash script to remove '-master' from Github zip files.
 
 ## Installation
 
-** Step 1**
+**Step 1**
 
 Navigate to your desired destination from the command line, e.g 
 
