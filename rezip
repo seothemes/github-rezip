@@ -1,0 +1,39 @@
+#!/bin/bash
+#
+# Github Rezip
+#
+# Removes '-master' from Github Zip files.
+#
+# Step 1: Save this bash script file to Desktop.
+# Step 2: Open the terminal and navigate to Desktop.
+# Step 3: Run the following: chmod 700 rezip.
+# Step 4: Run the following: bash rezip owner/repo.
+# Step 5: The Zip file will be saved to Desktop.
+
+file=master.zip
+repo=$1
+base=`basename $repo`
+url="https://github.com/${repo}/archive/master.zip"
+
+if test -f "$file"; then
+  echo "$file already exists. Please delete and try again."
+  exit 1
+fi
+
+if test -f "${base}.zip"; then
+  echo "${base}.zip already exists. Please delete and try again."
+  exit 1
+fi
+
+if [[ -n "$repo" ]]; then
+  wget -q $url
+  unzip -qq master.zip
+  mv "${base}-master" $base
+  wait
+  zip -qr -r "${base}.zip" $base
+  rm master.zip
+  rm -r "${base}"
+  
+else
+  echo "Please provide owner and repo information. E.g company/repo".
+fi
