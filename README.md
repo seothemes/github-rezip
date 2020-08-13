@@ -1,6 +1,6 @@
 # Github Rezip
 
-Bash script to remove '-master' from Github zip files.
+Bash script to download and remove branch name from Github zip files.
 
 ## Installation
 
