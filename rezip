@@ -11,12 +11,12 @@
 # Step 5: The Zip file will be saved to Desktop.
 
 repo=$1
-branch=$2
+branch=master
 base=`basename $repo`
 url="https://github.com/${repo}/archive/${branch}.zip"
 
-if [[ -n "$branch" ]]; then
-  branch=master
+if [[ -n "$2" ]]; then
+  branch=$2
 fi
 
 file="${branch}.zip"
@@ -39,7 +39,7 @@ if [[ -n "$repo" ]]; then
   zip -qr -r "${base}.zip" $base
   rm $file
   rm -r "${base}"
-  
+
 else
   echo "Please provide owner and repo information. E.g company/repo".
 fi
