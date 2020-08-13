@@ -11,15 +11,10 @@
 # Step 5: The Zip file will be saved to Desktop.
 
 repo=$1
-branch=master
+branch=${2:-master}
+file="${branch}.zip"
 base=`basename $repo`
 url="https://github.com/${repo}/archive/${branch}.zip"
-
-if [[ -n "$2" ]]; then
-  branch=$2
-fi
-
-file="${branch}.zip"
 
 if test -f "$file"; then
   echo "$file already exists. Please delete and try again."
